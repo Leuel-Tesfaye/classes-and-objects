@@ -7,6 +7,9 @@ def index(request):
     features = Features.objects.all()  # Rename variable to lowercase 'features'
     return render(request, 'index.html', {'features': features})  # Adjust variable name in the context dictionary
 
+def register (request) : 
+    return render(request, 'register.html')
+
 def counter(request):
     if 'text' in request.POST:
         text = request.POST['text']
@@ -14,3 +17,4 @@ def counter(request):
         return render(request, 'counter.html', {'amount': amount_of_words})
     else:
         pass
+
