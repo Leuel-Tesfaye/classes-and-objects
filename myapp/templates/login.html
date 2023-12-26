@@ -8,7 +8,7 @@
   </head>
   <style>
     /* Moved the style block outside the loop to avoid unnecessary repetition */
-    h5 {
+    h3 {
       color: red;
       display: flex;
       justify-content: center;
@@ -22,7 +22,7 @@
       {% for message in messages %}
       <h3>{{ message }}</h3>
       {% endfor %}
-      <form class="form" method="POST" action="register">
+      <form class="form" method="POST" action="login">
         {% csrf_token %}
         <span class="title">Login</span>
         <span class="subtitle">Login using your username and Email.</span>
@@ -47,11 +47,11 @@
             name="confirm_password"
           /> -->
         </div>
-        <button type="submit">Sign up</button>
+        <button type="submit">Login</button>
         <!-- Added type attribute for the button -->
       </form>
       <div class="form-section">
-        <p>Have an account? <a href="">Log in</a></p>
+        <p>Don't have an account? <a href="">SignUp</a></p>
       </div>
     </div>
   </body>

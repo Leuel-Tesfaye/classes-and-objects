@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/assets/css/register.css" />
     <title>Register</title>
   </head>
   <style>
@@ -17,20 +18,41 @@
     }
   </style>
   <body>
-    {% for message in messages %}
-    <h5>{{ message }}</h5>
-    {% endfor %}
-    <h1>Sign Up Below</h1>
-    <form action="register" method="POST"></form>
-    {% csrf_token%}
-    <p>Username: /p> <input type="text" name="Username" /></p>
-
-    <p>Email :</p>
-    <input type="email" name="Email" />
-    <p>Password:</p>
-    <input type="password" name="Password" />
-    <p>Confirm Password:</p>
-    <input type="password" name="Confirm Password" />
-    <input type="submit" />
+    <div class="form-box">
+      {% for message in messages %}
+      <h5>{{ message }}</h5>
+      {% endfor %}
+      <form class="form" method="POST" action="register">
+        {% csrf_token %}
+        <span class="title">Sign Up</span>
+        <span class="subtitle">Create An Account !</span>
+        <div class="form-container">
+          <input
+            type="text"
+            class="input"
+            placeholder="Username"
+            name="username"
+          />
+          <input type="email" class="input" placeholder="Email" name="email" />
+          <input
+            type="password"
+            class="input"
+            placeholder="Password"
+            name="password"
+          />
+          <input
+            type="password"
+            class="input"
+            placeholder="Confirm Password"
+            name="confirm_password"
+          />
+        </div>
+        <button type="submit">Signup</button>
+        <!-- Added type attribute for the button -->
+      </form>
+      <div class="form-section">
+        <p>Already have an Account <a href="">Login </a></p>
+      </div>
+    </div>
   </body>
 </html>
