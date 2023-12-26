@@ -6,7 +6,6 @@ from .models import Features
 def index(request):
     features = Features.objects.all()
     return render(request, 'index.html', {'features': features})
-from django.shortcuts import render
 
 def register(request):
     if request.method == 'POST':
@@ -18,23 +17,33 @@ def register(request):
         if password == password2:
             if User.objects.filter(email=email).exists():
                 messages.info(request, 'Email Already Used')
-                return redirect('register')
             elif User.objects.filter(username=username).exists():
                 messages.info(request, 'Username already exists')
-                return redirect('register')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
-                user.save();
+                user.save()
                 return redirect('login')
-        
         else:
             messages.info(request, 'Passwords do not match')
-            return redirect('register')
+        return redirect('register')
     else:
         return render(request, 'register.html')
-def Login(request):
-    # Your view logic here
-    return render(request, 'login.html')
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Credentials Invalid !')
+        return redirect('login')
+    else:
+        return render(request, 'login.html')
+
 def counter(request):
     if 'text' in request.POST:
         text = request.POST['text']

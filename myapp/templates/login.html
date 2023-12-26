@@ -6,12 +6,26 @@
     <link rel="stylesheet" href="../static/assets/css/register.css" />
     <title>Login</title>
   </head>
+  <style>
+    /* Moved the style block outside the loop to avoid unnecessary repetition */
+    h5 {
+      color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+  </style>
   <body>
     <div class="form-box">
+      {% for message in messages %}
+      <h3>{{ message }}</h3>
+      {% endfor %}
       <form class="form" method="POST" action="register">
         {% csrf_token %}
-        <span class="title">Sign up</span>
-        <span class="subtitle">Create a free account with your email.</span>
+        <span class="title">Login</span>
+        <span class="subtitle">Login using your username and Email.</span>
         <div class="form-container">
           <input
             type="text"
@@ -19,19 +33,19 @@
             placeholder="Username"
             name="username"
           />
-          <input type="email" class="input" placeholder="Email" name="email" />
+          <!-- <input type="email" class="input" placeholder="Email" name="email" /> -->
           <input
             type="password"
             class="input"
             placeholder="Password"
             name="password"
           />
-          <input
+          <!-- <input
             type="password"
             class="input"
             placeholder="Confirm Password"
             name="confirm_password"
-          />
+          /> -->
         </div>
         <button type="submit">Sign up</button>
         <!-- Added type attribute for the button -->
