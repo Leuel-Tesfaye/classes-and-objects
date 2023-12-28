@@ -1,3 +1,4 @@
+<!-- register.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +23,7 @@
       {% for message in messages %}
       <h5>{{ message }}</h5>
       {% endfor %}
-      <form class="form" method="POST" action="register">
+      <form class="form" method="POST" action="{% url 'register:register' %}">
         {% csrf_token %}
         <span class="title">Sign Up</span>
         <span class="subtitle">Create An Account !</span>
@@ -48,10 +49,11 @@
           />
         </div>
         <button type="submit">Signup</button>
-        <!-- Added type attribute for the button -->
       </form>
       <div class="form-section">
-        <p>Already have an Account <a href="">Login </a></p>
+        <p>
+          Already have an Account <a href="{% url 'register:login' %}">Login</a>
+        </p>
       </div>
     </div>
   </body>

@@ -22,10 +22,10 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-                return redirect('login')
+                return redirect('login:login')
         else:
             messages.info(request, 'Passwords do not match')
-        return redirect('register')
+            return redirect('register:register')  # Corrected indentation
     else:
         return render(request, 'register.html')
 
@@ -40,7 +40,7 @@ def login(request):
             return redirect('/')
         else:
             messages.info(request, 'Credentials Invalid !')
-        return redirect('login')
+            return redirect('login:login')  # Corrected indentation
     else:
         return render(request, 'login.html')
 
